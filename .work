@@ -1,0 +1,9 @@
+export RUN_ROOT=~/Runnable
+
+# Override for papyrus::display_json
+function papyrus::display_json {
+  jq $@
+}
+
+# Source papyrus @GetRunnable
+source $RUN_ROOT/papyrus/.bash_profile
