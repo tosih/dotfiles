@@ -44,3 +44,9 @@ fi
 
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible_vault_pass
 export ANSIBLE_HOST_KEY_CHECKING=False
+export GOPATH=$HOME/Developer/go
+
+export NOTI_PUSHBULLET_TOK=o.xkJ6X4t9nyG34tbFaWBBZwHBsRlNsTAz
+export NOTI_DEFAULT="pushbullet"
+
+source ~/.secrets
