@@ -184,3 +184,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	signingkey = EBC7D6A93A62DA5D
+	name = tosih
+	email = sohail@runnable.com

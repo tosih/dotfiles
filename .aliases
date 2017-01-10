@@ -163,7 +163,13 @@ alias killast="docker kill `docker ps -q | awk '{print $1}'`"
 alias hop="docker exec -it `docker ps -q | awk '{print $1}'` bash"
 
 # Add ssh keys to agent
-alias addkeys="ssh-add ~/.ssh/id_rsa ~/.ssh/*prime.pem"
+alias addkeys="ssh-add ~/.ssh/id_rsa ~/.ssh/*.pem"
 
 # Quick server folder via HTTP
 alias serve="python -m SimpleHTTPServer"
+
+# Prepend text to files
+alias prepend="echo 'for f in *.md; do mv \"$f\" \"test - $f\"; done'"
+
+# Show TCP ports listened on
+alias ports="sudo lsof -iTCP -sTCP:LISTEN -n"
