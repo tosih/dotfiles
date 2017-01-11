@@ -1,21 +1,16 @@
-## Install/Update
+# dotfiles
+My personal collection of dotfiles
+
+## Installation
 
 ```bash
-source bootstrap.sh
+$ make install
 ```
 
-### Sensible macOS defaults
-
-When setting up a new Mac, you may want to set some sensible macOS defaults:
-
+## Update
 ```bash
-./.macos
+$ make update
 ```
 
-### Install Homebrew formulae
-
-When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
-
-```bash
-./brew.sh
-```
+## Secrets
+Manage .secrets file with any non-tracked keys, etc.

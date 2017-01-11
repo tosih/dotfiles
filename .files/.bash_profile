@@ -56,3 +56,6 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename')
 . $powerline_path/bindings/bash/powerline.sh
+
+# Global Composer
+export PATH=$HOME/.composer/vendor/bin:$PATH
