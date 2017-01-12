@@ -95,3 +95,7 @@ brew install gnupg gpg-agent pinentry-mac
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+brew install python
+
+pip install powerline-status

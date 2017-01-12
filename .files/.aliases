@@ -152,7 +152,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload="exec $SHELL -l"
 
 # Maintain my own ssh config along with others
-alias ssh="cat ~/.ssh/conf.d/* > ~/.ssh/config; ssh"
+alias ssh="touch ~/.ssh/conf.d/custom && cat ~/.ssh/conf.d/* > ~/.ssh/config; ssh"
 
 # Kill last running docker container
 alias killast="docker kill `docker ps -q | awk '{print $1}'`"
@@ -171,3 +171,10 @@ alias prepend="echo 'for f in *.md; do mv \"$f\" \"test - $f\"; done'"
 
 # Show TCP ports listened on
 alias ports="sudo lsof -iTCP -sTCP:LISTEN -n"
+
+# Github Shortcuts
+alias gc="git commit -am"
+alias gd="git diff master"
+alias gf="git fetch --prune"
+alias gp="git pull"
+alias gs="git status"

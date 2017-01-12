@@ -16,6 +16,6 @@ update:
 	bash bootstrap.sh
 
 install:
-	bash ./brew.sh
 	bash ./macos.sh
+	bash ./init.sh
 	bash bootstrap.sh
