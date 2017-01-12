@@ -151,9 +151,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Open folder in Sublime
-alias s='subl -a .'
-
 # Maintain my own ssh config along with others
 alias ssh="cat ~/.ssh/conf.d/* > ~/.ssh/config; ssh"
 

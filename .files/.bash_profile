@@ -51,10 +51,10 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 eval "$(rbenv init -)"
 
 # Source powerline.
+export POWERLINE_BASH_CONTINUATION=1
+export POWERLINE_BASH_SELECT=1
+export powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename')
 powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename')
 . $powerline_path/bindings/bash/powerline.sh
 
 # Global Composer
