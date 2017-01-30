@@ -219,3 +219,10 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# This command cleans up all the unwanted Docker junk from the daemon
+function cleanDocker() {
+	docker rm -v $(docker ps -a -q -f status=exited)
+	docker rmi $(docker images -f "dangling=true" -q)
+	docker volume rm $(docker volume ls -qf dangling=true)
+}
