@@ -154,12 +154,6 @@ alias reload="exec $SHELL -l"
 # Maintain my own ssh config along with others
 alias ssh="touch ~/.ssh/conf.d/custom && cat ~/.ssh/conf.d/* > ~/.ssh/config; ssh"
 
-# Kill last running docker container
-alias killast="docker kill `docker ps -q | awk '{print $1}'`"
-
-# Hop into latest docker container
-alias hop="docker exec -it `docker ps -q | awk '{print $1}'` bash"
-
 # Add ssh keys to agent
 alias addkeys="ssh-add ~/.ssh/id_rsa ~/.ssh/*.pem"
 
