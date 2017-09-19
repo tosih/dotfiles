@@ -149,7 +149,7 @@ declare -a FILES_TO_SYMLINK=(
   '.files/gitconfig'
   '.files/gitignore'
   '.files/zshrc'
-  '.files/zprestorc'
+  '.files/zpreztorc'
 
 )
 

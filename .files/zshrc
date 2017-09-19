@@ -19,3 +19,6 @@ fi
 
 # Init RBENV
 eval "$(rbenv init -)"
+
+# Fix LS colors
+unset LSCOLORS LS_COLORS
