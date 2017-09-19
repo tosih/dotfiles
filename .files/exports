@@ -19,9 +19,6 @@ export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
 
-# Apped to history and don't override it
-shopt -s histappend
-
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
@@ -32,23 +29,11 @@ export LESS_TERMCAP_md="${yellow}";
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-# In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
-# variable pointing GPG to the gpg-agent socket. This little script, which must be sourced
-# in your shell's init script (ie, .bash_profile, .zshrc, whatever), will either start
-# gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
-
-# Add the following to your shell init to set up gpg-agent automatically for every shell
-if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
-    source ~/.gnupg/.gpg-agent-info
-    export GPG_AGENT_INFO
-else
-    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
-fi
-
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible_vault_pass
 export ANSIBLE_HOST_KEY_CHECKING=False
 export GOPATH=$HOME/Developer/go
 
 export NOTI_DEFAULT="pushbullet"
 
-source ~/.secrets
+export GPG_TTY=$(tty)
+export GITHUB_USERNAME=tosih

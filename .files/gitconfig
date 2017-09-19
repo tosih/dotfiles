@@ -132,7 +132,7 @@
 
 [gpg]
 
-	program = gpg1
+	program = gpg
 
 [diff]
 
@@ -185,6 +185,7 @@
 
 	insteadOf = "gist:"
 [user]
-	signingkey = EBC7D6A93A62DA5D
+
+	signingkey = FDF998041937E149
 	name = tosih
-	email = sohail@runnable.com
+	email = somuchhail@gmail.com

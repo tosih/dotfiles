@@ -173,3 +173,6 @@ alias gf="git fetch --prune"
 alias gp="git pull"
 alias gs="git status"
 alias gl="git log --abbrev-commit --pretty=oneline"
+
+# Kubernetes
+alias kall="kubectl get all --all-namespaces"

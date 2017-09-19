@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
-
 cd $HOME;
 
 function cleanupDotFiles() {
 	rm -rf .aliases
-  rm -rf .bash_profile
-  rm -rf .bashrc
-  rm -rf .config/powerline
-  rm -rf .config/karabiner
   rm -rf .exports
   rm -rf .functions
-  rm -rf .inputrc
-  rm -rf .vim
-  rm -rf .vimrc
   rm -rf .work
-  touch ~/.bash_profile 
-	source ~/.bash_profile;
+  rm -rf .zshrc
+  rm -rf .zpreztorc
+}
+
+function restoreZshrc() {
+  tee ~/.zshrc <<EOS
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+EOS
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

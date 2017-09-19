@@ -12,14 +12,12 @@ help:
 	@echo ""
 
 update:
-	touch ~/.secrets
-	@echo `pwd`
-	bash bootstrap.sh
+	bash ./init.sh
 
 install:
 	bash ./macos.sh
+	bash ./brew.sh
 	bash ./init.sh
-	bash bootstrap.sh
 
 uninstall:
 	bash uninstall.sh
