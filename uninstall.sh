@@ -1,31 +1,65 @@
 #!/usr/bin/env bash
-cd $HOME;
+
+# Utils
+# =======
+execute() {
+  $1 &> /dev/null
+  print_result $? "${2:-$1}"
+}
+
+print_result() {
+  [ $1 -eq 0 ] \
+    && print_success "$2" \
+    || print_error "$2"
+
+  [ "$3" == "true" ] && [ $1 -ne 0 ] \
+    && exit
+}
+
+print_error() {
+  # Print output in red
+  printf "\e[0;31m  [✖] $1 $2\e[0m\n"
+}
+
+print_success() {
+  # Print output in green
+  printf "\e[0;32m  [✔] $1\e[0m\n"
+}
+
+# UnSymLink
+# =========
+
+declare -a FOLDERS_TO_UNSTOW=(
+  'files'
+  'git'
+  'karabiner'
+  'vim'
+  'zsh'
+)
 
 function cleanupDotFiles() {
-	rm -rf .aliases
-  rm -rf .exports
-  rm -rf .functions
-  rm -rf .work
-  rm -rf .zshrc
-  rm -rf .zpreztorc
+  local i=''
+  local sourceFolder=''
+  local targetFile=''
+
+  for i in ${FOLDERS_TO_UNSTOW[@]}; do
+    sourceFolder="$i"
+    execute "stow -D -t ${HOME} $sourceFolder" "$sourceFolder → ${HOME}"
+  done
+
+  unset FOLDERS_TO_UNSTOW
 }
 
-function restoreZshrc() {
-  tee ~/.zshrc <<EOS
-# Start up gpg-agent if needed
-if ! [ -n "$(pgrep gpg-agent)" ]; then
-    eval $(gpg-agent --daemon)
+cleanVim() {
+  vim +PluginClean +qall
+}
+
+read -p "This will uninstall dotfiles. Are you sure? (y/n) " -n 1
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  cleanVim
+  cleanupDotFiles
 fi
-EOS
-}
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	cleanupDotFiles;
-else
-  read -p "This will uninstall dotfiles. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		cleanupDotFiles;
-	fi;
-fi;
-unset cleanupDotFiles;
+unset cleanupDotFiles
+unset cleanVim
