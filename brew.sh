@@ -52,6 +52,7 @@ brew install git
 brew install jq
 brew install rbenv
 brew install tree
+brew install stow
 
 # GPG Signing Tools
 brew install gnupg 
