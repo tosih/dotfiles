@@ -12,9 +12,9 @@ function cleanupDotFiles() {
 
 function restoreZshrc() {
   tee ~/.zshrc <<EOS
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# Start up gpg-agent if needed
+if ! [ -n "$(pgrep gpg-agent)" ]; then
+    eval $(gpg-agent --daemon)
 fi
 EOS
 }
