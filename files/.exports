@@ -37,3 +37,6 @@ export NOTI_DEFAULT="pushbullet"
 
 export GPG_TTY=$(tty)
 export GITHUB_USERNAME=tosih
+
+export GOPATH=~/Developer/go
+

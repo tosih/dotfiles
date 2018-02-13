@@ -9,14 +9,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'edkolev/tmuxline.vim'
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 filetype plugin indent on
 
+syntax on
 set hidden
 set history=100
 filetype indent on
@@ -27,7 +27,6 @@ set expandtab
 set smartindent
 set autoindent
 set hlsearch
-nnoremap <Leader><Leader> :e#<CR>
 set showmatch
 set nobackup
 set noswapfile
@@ -39,4 +38,7 @@ let NERDTreeMapActivateNode='<right>'
 let NERDTreeShowHidden=1
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
+set backspace=indent,eol,start
 
+set laststatus=2
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

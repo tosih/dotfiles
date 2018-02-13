@@ -236,3 +236,21 @@ function cleanDocker() {
 	docker rmi $(docker images -f "dangling=true" -q)
 	docker volume rm $(docker volume ls -qf dangling=true)
 }
+
+function tele-upgrade() {
+  version=${1:-latest}
+  echo “Upgrading to ${version}”
+  curl https://get.gravitational.io/telekube/install/$version | bash
+}
+
+function tele-login() {
+  tele login --auth Keycloak -o opscenter.k$1.msap.io $2
+}
+
+function drain() {
+  kubectl drain --delete-local-data --ignore-daemonsets $1
+}
+
+function uncordon() {
+  kubectl uncordon $1
+}

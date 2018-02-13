@@ -1,4 +1,6 @@
 [alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd)%Creset' --abbrev-commit --date=relative
+	subscribe-pulls = !"f() { REMOTE=${1:-origin}; if ! git config --local --get-all remote.${REMOTE}.fetch | grep -q refs/pull; then echo 'subscribing...' 2>&1; git config --local --add remote.${REMOTE}.fetch '+refs/pull/*/head:refs/remotes/pr/*'; fi; }; f"
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -99,6 +101,8 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+  editor = vim
+
 
 [color]
 
@@ -137,7 +141,8 @@
 [diff]
 
 	# Detect copies as well as renames
-	renames = copies
+  tool = vimdiff
+  renames = copies
 
 [diff "bin"]
 
@@ -151,7 +156,8 @@
 
 [merge]
 
-	# Include summaries of merged commits in newly created merge commit messages
+  # Include summaries of merged commits in newly created merge commit messages
+  tool = vimdiff
 	log = true
 
 [push]
@@ -173,7 +179,19 @@
 
 [url "git://github.com/"]
 
-	insteadOf = "github:"
+  insteadOf = "github:"
+
+[url "git@github.com:"]
+
+  insteadOf = "https://github.com/"
+
+[url "git@github.com:"]
+
+  pushInsteadOf = "git://github.com/"
+
+[url "git@github.com:"]
+
+  pushInsteadOf = "https://github.com/"
 
 [url "git@gist.github.com:"]
 
@@ -188,4 +206,6 @@
 
 	signingkey = FDF998041937E149
 	name = tosih
-	email = somuchhail@gmail.com
+  email = somuchhail@gmail.com
+[diff "sopsdiffer"]
+	textconv = sops -d

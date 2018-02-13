@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Replace git with hub
+alias git="hub"
+
+# Replace cat with colored cat
+alias cat="ccat"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -44,9 +50,6 @@ alias week='date +%V'
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -142,9 +145,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Maintain my own ssh config along with others
-alias ssh="touch ~/.ssh/conf.d/custom && cat ~/.ssh/conf.d/* > ~/.ssh/config; ssh"
-
 # Add ssh keys to agent
 alias addkeys="ssh-add ~/.ssh/id_rsa ~/.ssh/*.pem"
 
@@ -167,3 +167,17 @@ alias gl="git log --abbrev-commit --pretty=oneline"
 
 # Kubernetes
 alias kall="kubectl get all --all-namespaces"
+
+# Work stuff
+alias ms="cd ~/Mulesoft/"
+
+alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
+
+# Get CPU request total (we x20 because because each m3.large has 2 vcpus (2000m) )
+alias cpualloc='util | grep % | awk '\''{print $1}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*20), "%\n" } }'\'''
+
+# Get mem request total (we x75 because because each m3.large has 7.5G ram )
+alias memalloc='util | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*75), "%\n" } }'\'''
+
+# Make curl silent
+alias curl='curl -s'
